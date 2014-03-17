@@ -1,0 +1,21 @@
+Options +FollowSymLinks
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+<Files .*>
+	Order Deny,Allow
+	Deny From All
+</Files>
+
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/lala/$0 [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^system.*
+RewriteRule ^(.*)$ /lala/index.php/$0 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ lala/index.php/$0 [L]
+</IfModule>
+Options -Indexes
